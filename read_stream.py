@@ -6,7 +6,7 @@ import time
 # http://docs.opencv.org/master/d3/dc0/group__imgproc__shape.html#ga17ed9f5d79ae97bd4c7cf18403e1689a&gsc.tab=0
 ##http://docs.opencv.org/master/d4/d73/tutorial_py_contours_begin.html#gsc.tab=0
 
-cap = cv2.VideoCapture(0) #Open video file
+cap = cv2.VideoCapture("video2.mp4") #Open video file
 fgbg = cv2.createBackgroundSubtractorMOG2(detectShadows = True) #Create the background substractor
 kernelOp = np.ones((3,3),np.uint8)
 kernelCl = np.ones((11,11),np.uint8)
