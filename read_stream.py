@@ -16,7 +16,7 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 persons = []
 max_p_age = 5
 pid = 1
-areaTH = 500
+areaTH = 9000
 
 while(cap.isOpened()):
     ret, frame = cap.read() #read a frame
@@ -67,14 +67,14 @@ while(cap.isOpened()):
     #########################
     # DRAWING TRAJECTORIES  #
     #########################
-    for i in persons:
-        if len(i.getTracks()) >= 2:
-            pts = np.array(i.getTracks(), np.int32)
-            pts = pts.reshape((-1,1,2))
-            frame = cv2.polylines(frame,[pts],False,i.getRGB())
-        if i.getId() == 9:
-            print str(i.getX()), ',', str(i.getY())
-        cv2.putText(frame, str(i.getId()),(i.getX(),i.getY()),font,0.3,i.getRGB(),1,cv2.LINE_AA)
+    # for i in persons:
+    #     if len(i.getTracks()) >= 2:
+    #         pts = np.array(i.getTracks(), np.int32)
+    #         pts = pts.reshape((-1,1,2))
+    #         frame = cv2.polylines(frame,[pts],False,i.getRGB())
+    #     if i.getId() == 9:
+    #         print (str(i.getX()), ',', str(i.getY()))
+    #     cv2.putText(frame, str(i.getId()),(i.getX(),i.getY()),font,0.3,i.getRGB(),1,cv2.LINE_AA)
 
 
     cv2.imshow('Frame',frame)
