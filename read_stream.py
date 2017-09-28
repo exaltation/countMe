@@ -24,9 +24,9 @@ while(cap.isOpened()):
     fgmask = fgbg.apply(frame) #Use the substractor
     try:
         ret,imBin= cv2.threshold(fgmask,200,255,cv2.THRESH_BINARY)
-        #Opening (erode->dilate) para quitar ruido.
+        #Opening (erode->dilate) remove noise.
         mask = cv2.morphologyEx(imBin, cv2.MORPH_OPEN, kernelOp)
-        #Closing (dilate -> erode) para juntar regiones blancas.
+        #Closing (dilate -> erode) join white regions.
         mask =  cv2.morphologyEx(mask , cv2.MORPH_CLOSE, kernelCl)
     except:
         #if there are no more frames to show...
@@ -49,23 +49,23 @@ while(cap.isOpened()):
             new = True
             for i in persons:
                 if abs(x-i.getX()) <= w and abs(y-i.getY()) <= h:
-                    # el objeto esta cerca de uno que ya se detecto antes
+                    # the object is near one already detected before
                     new = False
-                    i.updateCoords(cx,cy)   #actualiza coordenadas en el objeto and resets age
+                    i.updateCoords(cx,cy)   #update coordinates in the object and resets age
                     break
             if new == True:
                 p = Person.MyPerson(pid,cx,cy, max_p_age)
                 persons.append(p)
                 pid += 1
             #################
-            #   DIBUJOS     #
+            #   DRAWINGS     #
             #################
             cv2.circle(frame,(cx,cy), 5, (0,0,255), -1)
             img = cv2.rectangle(frame,(x,y),(x+w,y+h),(0,255,0),2)
             cv2.drawContours(frame, cnt, -1, (0,255,0), 3)
 
     #########################
-    # DIBUJAR TRAYECTORIAS  #
+    # DRAWING TRAJECTORIES  #
     #########################
     for i in persons:
         if len(i.getTracks()) >= 2:
