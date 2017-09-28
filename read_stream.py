@@ -35,9 +35,9 @@ while(cap.isOpened()):
 
     _, contours0, hierarchy = cv2.findContours(mask,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE)
     for cnt in contours0:
-        cv2.drawContours(frame, cnt, -1, (0,255,0), 3, 8)
         area = cv2.contourArea(cnt)
         if area > areaTH:
+            cv2.drawContours(frame, cnt, -1, (0,255,0), 3, 8)
             #################
             #   TRACKING    #
             #################
